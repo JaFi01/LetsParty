@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios'
+import { Col, Container, ListGroup, Row } from 'react-bootstrap'
 
 function App() {
   const [activities, setActivities] = useState([])
@@ -14,16 +15,24 @@ function App() {
 
   return (
     <>
-    <h1>Reactivities</h1>
-    <ul>
-      {activities.map((activity: any) =>(
-        <li key={activity.id}>
-          {activity.title}
-        </li>
-      ))}
-    </ul>
-
-
+    <Container>
+      <Row>
+        <Col>
+          <h2>Reactivities</h2>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <ListGroup>
+            {activities.map((activity: any) => (
+              <ListGroup.Item key={activity.id}>
+                {activity.title}
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </Col>
+      </Row>
+    </Container>
     </>
   )
 }
