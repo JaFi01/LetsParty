@@ -1,0 +1,9 @@
+body{
+    background-color: #eaeaea !important;
+}
+#MainNavbar{
+    background-image: linear-gradient(135deg, #a770ef00, #CF8BF369, #FDB99B);
+}
+button{
+    margin-right: 10px;
+}
