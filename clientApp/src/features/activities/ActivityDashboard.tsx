@@ -24,10 +24,10 @@ export default function ActivityDashboard({
     return(
         <Container>
             <Row>
-                <Col  xs={12} lg={7}>
+                <Col  xs={12} lg={7} className='order-2 order-md-1'>
                     <ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity}/>
                 </Col>
-                <Col xs={12} lg={5}>
+                <Col xs={12} lg={5} className='order-1 order-md-2'>
                     {selectedActivity && !editMode &&
                     <ActivityDetails 
                         activity={selectedActivity} 
