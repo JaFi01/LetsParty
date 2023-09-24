@@ -1,4 +1,4 @@
-import { Container, ListGroup, Card, Button, Badge } from "react-bootstrap";
+import { Container, ListGroup, Button, Badge } from "react-bootstrap";
 import { Activity } from "../../app/models/activity";
 
 interface Props {
