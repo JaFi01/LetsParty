@@ -1,13 +1,14 @@
 import { Button, Card } from "react-bootstrap";
 import { Activity } from "../../app/models/activity";
+import { useStore } from "../../app/stores/store";
 
-interface Props {
-    activity: Activity;
-    cancelSelectActivity: () => void;
-    openForm: (id: string)=> void;
-}
+export default function ActivityDetails(){
 
-export default function ActivityDetails({activity, cancelSelectActivity, openForm}: Props){
+    const {activityStore} = useStore();
+    const{selectedActivity: activity, openForm, cancelSelectedActivity} = activityStore
+
+    if(!activity) return;
+
     return(
         <Card style={{ width: '100%' }}>
         <Card.Img variant="top" src={`/assets/categoryImages/${activity.category}.jpg`} />
@@ -18,7 +19,7 @@ export default function ActivityDetails({activity, cancelSelectActivity, openFor
             </Card.Text>
             <div className="ms-auto">
                 <Button onClick={() => openForm(activity.id)} variant="outline-primary">Edit</Button>
-                <Button onClick={cancelSelectActivity} variant="outline-danger">Cancel</Button>
+                <Button onClick={cancelSelectedActivity} variant="outline-danger">Cancel</Button>
             </div>
         </Card.Body>
         </Card>

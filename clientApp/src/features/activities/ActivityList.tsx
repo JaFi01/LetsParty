@@ -1,17 +1,16 @@
 import { Container, ListGroup, Button, Badge } from "react-bootstrap";
-import { Activity } from "../../app/models/activity";
+import { useStore } from "../../app/stores/store";
+import { observer } from "mobx-react-lite";
 
-interface Props {
-  activities: Activity[];
-  selectActivity: (id: string) => void;
-  deleteActivity: (id: string) => void;
-}
+export default observer(function ActivityList() {
+  const {activityStore} = useStore();
+  const {deleteActivity, activitiesByDate} = activityStore
 
-export default function ActivityList({ activities, selectActivity, deleteActivity }: Props) {
+
   return (
     <Container>
       <ListGroup>
-        {activities.map((activity) => (
+        {activitiesByDate.map((activity) => (
           <ListGroup.Item key={activity.id}>
             <div>
               <h5>{activity.title}</h5>
@@ -28,7 +27,7 @@ export default function ActivityList({ activities, selectActivity, deleteActivit
                 <Badge bg="secondary">{activity.category}</Badge>
               </div>
               <div>
-                <Button onClick={() => selectActivity(activity.id)} variant="primary"> View details </Button>
+                <Button onClick={() => activityStore.selectActivity(activity.id)} variant="primary"> View details </Button>
                 <Button onClick={() => deleteActivity(activity.id)} variant="danger"> Delete Activity</Button>
               </div>
             </div>
@@ -37,4 +36,4 @@ export default function ActivityList({ activities, selectActivity, deleteActivit
       </ListGroup>
     </Container>
   );
-}
+})

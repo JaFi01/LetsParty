@@ -1,10 +1,10 @@
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { useStore } from "../stores/store";
 
-interface Props{
-    openForm: () => void;
-}
 
-export default function NavBar({openForm}: Props) {
+export default function NavBar() {
+
+  const {activityStore} = useStore();
   return (
     <Navbar
       id="MainNavbar"
@@ -36,7 +36,7 @@ export default function NavBar({openForm}: Props) {
           <Nav className="me-auto">
             <Nav.Link href="#Activities">Activities</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
-            <Button onClick={openForm} variant="outline-dark">Create Activity</Button>
+            <Button onClick={() =>activityStore.openForm()} variant="outline-dark">Create Activity</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
