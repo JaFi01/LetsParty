@@ -96,6 +96,7 @@ export default class ActivityStore {
 
     }
     deleteActivity = async (id: string) => {
+        this.loading = true;
         try {
             await agent.Activities.delete(id);
             runInAction(() => {
@@ -111,6 +112,5 @@ export default class ActivityStore {
             })
             
         }
-
     }
 }
