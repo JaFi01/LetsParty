@@ -1,10 +1,7 @@
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
-import { useStore } from "../stores/store";
-
+import { LinkContainer } from 'react-router-bootstrap'
 
 export default function NavBar() {
-
-  const {activityStore} = useStore();
   return (
     <Navbar
       id="MainNavbar"
@@ -13,7 +10,7 @@ export default function NavBar() {
       className="bg-body-tertiary"
     >
       <Container>
-        <Navbar.Brand href="#home" className="me-3">
+        <Navbar.Brand href="/" className="me-3">
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0"
@@ -34,9 +31,12 @@ export default function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#Activities">Activities</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <Button onClick={() =>activityStore.openForm()} variant="outline-dark">Create Activity</Button>
+            <Nav.Link href="activities">Activities</Nav.Link>
+            <Nav.Link href="link">Link</Nav.Link>
+            <LinkContainer to="/createActivity">
+              <Button variant="outline-dark"> Create Activity</Button>
+            </LinkContainer>
+            {/* <Button onClick={() =>activityStore.openForm()} variant="outline-dark">Create Activity</Button> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

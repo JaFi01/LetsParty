@@ -1,5 +1,4 @@
 import { Button, Card } from "react-bootstrap";
-import { Activity } from "../../app/models/activity";
 import { useStore } from "../../app/stores/store";
 
 export default function ActivityDetails(){
@@ -19,7 +18,7 @@ export default function ActivityDetails(){
             </Card.Text>
             <div className="ms-auto">
                 <Button onClick={() => openForm(activity.id)} variant="outline-primary">Edit</Button>
-                <Button onClick={cancelSelectedActivity} variant="outline-danger">Cancel</Button>
+                <Button onClick={cancelSelectedActivity} variant="outline-warning">Cancel</Button>
             </div>
         </Card.Body>
         </Card>
