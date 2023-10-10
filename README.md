@@ -27,6 +27,7 @@ To get this project up and running, follow these steps:
 ```
     dotnet restore
     dotnet ef database update
+    dotnet run
 
 ### 3. Frontend (React with TypeScript)
 Open a new terminal window/tab and navigate to the frontend folder:
