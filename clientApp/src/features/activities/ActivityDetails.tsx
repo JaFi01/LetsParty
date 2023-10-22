@@ -1,12 +1,22 @@
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import { Button } from "semantic-ui-react";
 import { useStore } from "../../app/stores/store";
+import { observer } from "mobx-react-lite";
+import { Link, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import LoadingComponent from "../../app/layout/LoadingComponent";
 
-export default function ActivityDetails(){
+export default observer( function ActivityDetails(){
 
     const {activityStore} = useStore();
-    const{selectedActivity: activity, openForm, cancelSelectedActivity} = activityStore
+    const{selectedActivity: activity, loadActivity, loadingInititial} = activityStore
+    const {id} = useParams();
 
-    if(!activity) return;
+    useEffect(()=> {
+        if(id) loadActivity(id);
+    }, [id, loadActivity]);
+    
+    if(loadingInititial || !activity) return <LoadingComponent />;
 
     return(
         <Card style={{ width: '100%' }}>
@@ -17,10 +27,10 @@ export default function ActivityDetails(){
                     {activity.description}      
             </Card.Text>
             <div className="ms-auto">
-                <Button onClick={() => openForm(activity.id)} variant="outline-primary">Edit</Button>
-                <Button onClick={cancelSelectedActivity} variant="outline-warning">Cancel</Button>
+                <Button as={Link} to={`/manage/${activity.id}`} basic color="blue">Edit</Button>
+                <Button as={Link} to={`/activities`} basic color="grey">Cancel</Button>
             </div>
         </Card.Body>
         </Card>
     );
-}
+})

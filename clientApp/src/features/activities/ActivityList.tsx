@@ -36,8 +36,7 @@ export default observer(function ActivityList() {
                     <Badge bg="secondary">{activity.category}</Badge>
                   </div>
                   <div>
-                    <Button as={Link} to={`/activities/${activity.id}`} floated='right' content='View' color='blue'
-                    onClick={() => activityStore.selectActivity(activity.id)}/>
+                    <Button as={Link} to={`/activities/${activity.id}`} floated='right' content='View' color='blue'/>
                     <Button loading={loading && target === activity.id}
                       name={activity.id} floated='right' content='Delete'
                       color='red'

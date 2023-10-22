@@ -1,7 +1,5 @@
-import { Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import ActivityList from "./ActivityList";
-import ActivityDetails from "./ActivityDetails";
-import ActivityForm from "./ActivityForm";
 import { useStore } from "../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
@@ -9,17 +7,13 @@ import LoadingComponent from "../../app/layout/LoadingComponent";
 
 export default observer(function ActivityDashboard() {
   const { activityStore } = useStore();
-  const { selectedActivity, editMode } = activityStore;
+  const {loadActivities, activityRegistry} = activityStore
 
   useEffect(() =>{
-    activityStore.loadActivities()
-  }, [])
-
-
+    if(activityRegistry.size <= 1) loadActivities();
+  }, [loadActivities])
 
   if(activityStore.loadingInititial) return <LoadingComponent/>
-
-
   return (
     <Container>
       <Row>
@@ -27,10 +21,7 @@ export default observer(function ActivityDashboard() {
           <ActivityList/>
         </Col>
         <Col xs={12} lg={5} className="order-1 order-md-2">
-          {selectedActivity && !editMode && <ActivityDetails />}
-          {editMode && (
-            <ActivityForm />
-          )}
+          <h2>Event filters</h2>
         </Col>
       </Row>
     </Container>
